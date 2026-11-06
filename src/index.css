@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+:root {
+  --navy-900: #0a2547;
+  --navy-700: #073e7f;
+  --gold-500: #d19f0f;
+  --success: #059669;
+  --danger: #dc2626;
+  --warning: #d97706;
+  --ink-900: #0f172a;
+  --ink-600: #475569;
+  --ink-400: #94a3b8;
+  --line: #e2e8f0;
+  --surface: #ffffff;
+  --canvas: #f8fafc;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: var(--ink-900);
+    background-color: var(--canvas);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  code, kbd, samp, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  table, th, td, .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* High-Contrast Accessible Keyboard Focus Ring (WCAG AA) */
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--navy-700);
+    outline-offset: 2px;
+  }
+
+  /* Standard 150ms ease-out transitions without scale() */
+  button {
+    transition-property: color, background-color, border-color, box-shadow;
+    transition-duration: 150ms;
+    transition-timing-function: ease-out;
+  }
+}
+
+/* Subtle fade transitions without scale() */
+@keyframes bmiBackdropFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bmiModalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bmiToastSlide {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Signature Unit Code Badge (6px radius, no scale, 150ms) */
+.bmi-plate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gold-500);
+  color: var(--navy-900);
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--navy-900);
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+  white-space: nowrap;
+  flex-shrink: 0;
+  user-select: none;
+  transition: background-color 150ms ease-out;
+}
+
+/* Modal Backdrop & Panel */
+.bmi-modal-backdrop {
+  animation: bmiBackdropFade 150ms ease-out both;
+}
+
+.bmi-modal-panel {
+  animation: bmiModalEnter 150ms ease-out both;
+}
+
+.bmi-toast-enter {
+  animation: bmiToastSlide 150ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bmi-plate,
+  .bmi-modal-backdrop,
+  .bmi-modal-panel,
+  .bmi-toast-enter {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* High-Density Enterprise Table Discipline */
+.bmi-enterprise-table th {
+  background-color: #f1f5f9;
+  color: var(--ink-600);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--line);
+}
+
+.bmi-enterprise-table td {
+  font-size: 14px;
+  color: var(--ink-900);
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.bmi-enterprise-table tr:hover td {
+  background-color: var(--canvas);
+}

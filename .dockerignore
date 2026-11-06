@@ -1,0 +1,29 @@
+# Jangan pernah kirim artefak host ke build context:
+# node_modules Windows berisi binary native (esbuild/rollup/tailwind) yang tidak
+# kompatibel dengan node:22-alpine dan akan menimpa hasil `npm ci`.
+node_modules
+dist
+.data
+coverage
+
+# Rahasia & state lokal tidak boleh masuk image
+.env
+.env.*
+!.env.example
+*.log
+*.tmp
+
+# Tooling host / artefak editor (mempercepat build context)
+.git
+.github
+.vscode
+.agents
+.aistudio
+.antigravity
+
+# Dokumentasi & uji tidak dipakai saat `vite build`
+docs
+tests
+README.md
+README.ja.md
+bun.lock
